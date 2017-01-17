@@ -1,10 +1,8 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "hr_birthday",
+    'name': "Birthdays module",
 
-    'summary': """
-        Short (1 phrase/line) summary of the module's purpose, used as
-        subtitle on modules listing or apps.openerp.com""",
+    'summary': """remind colleagues about birthday""",
 
     'description': """
         Long description of module's purpose
