@@ -19,8 +19,8 @@
     <menuitem id="birthdays_menu" name="Birthdays" parent="main_hr_birthday_menu"
                     action="birth_list_action"/>
 
-  <!--Line-1: <menuitem id="menu_test" parent="hr.menu_hr_root" name="Test Module Parent"/>
+  <!--Line-1: <menuitem id="menu_test" parent="hr.menu_hr_root" name="Birthdays"/>
 
-              Line-2: <menuitem id="menu_test_child" parent="menu_test" name="My Menu" action="action_test"/>
+              Line-2: <menuitem id="menu_test_child" parent="menu_test" name="Upcoming birthdays" action="action_test"/>
 
             -->
