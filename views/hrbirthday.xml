@@ -1,0 +1,26 @@
+<odoo>
+  <data>
+
+    <record model="ir.actions.act_window" id="birthday_list_action">
+      <field name="name">Birthdays</field>
+      <field name="res_model">hr_birthday.birth</field>
+      <field name="view_type">form</field>
+      <field name="view_mode">tree,from</field>
+      <field name="help" type="html">
+        <p class="oe_view_nocontent_create">Tell us the celebration Date
+        </p>
+      </field>
+    </record>
+<!-- topinis, jam nereikia parent'o -->
+    <menuitem id="main_hr_birthday_menu" name="Birthdays"/>
+    <!-- first level in the left side menu -->
+    <menuitem id="hr_birthday_menu" name="Date of Births"
+              parent="main_hr_birthday_menu"/>
+    <menuitem id="birthdays_menu" name="Birthdays" parent="main_hr_birthday_menu"
+                    action="birth_list_action"/>
+
+  <!--Line-1: <menuitem id="menu_test" parent="hr.menu_hr_root" name="Test Module Parent"/>
+
+              Line-2: <menuitem id="menu_test_child" parent="menu_test" name="My Menu" action="action_test"/>
+
+            -->
