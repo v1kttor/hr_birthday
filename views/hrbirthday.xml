@@ -1,6 +1,34 @@
 <odoo>
   <data>
+<!-- form view -->
+    <record model="ir.ui.view" id="birth_form_view">
+      <field name="name">birth.form</field>
+      <field name="model">hr_birthday.birth</field>
+      <field name="arch" type="xml">
+        <form string="Birth Form">
+          <sheet>
+            <group>
+              <field name="name"/>
+              <field name="description"/>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
 
+<!-- tree view -->
+    <record model="ir.ui.view" id="birht_tree_view">
+      <field name="name">birth.tree</field>
+      <field name="model">"hr_birthday.birth"</field>
+      <field name="arch" type="xml">
+        <tree string="Birht tree">
+          <field name="name"/>
+        </tree>
+      </field>
+    </record>
+    
+
+   <!-- birth actionas act_window -->
     <record model="ir.actions.act_window" id="birthday_list_action">
       <field name="name">Birthdays</field>
       <field name="res_model">hr_birthday.birth</field>
@@ -11,16 +39,8 @@
         </p>
       </field>
     </record>
-<!-- topinis, jam nereikia parent'o -->
-    <menuitem id="main_hr_birthday_menu" name="Birthdays"/>
-    <!-- first level in the left side menu -->
-    <menuitem id="hr_birthday_menu" name="Date of Births"
-              parent="main_hr_birthday_menu"/>
-    <menuitem id="birthdays_menu" name="Birthdays" parent="main_hr_birthday_menu"
-                    action="birth_list_action"/>
 
-  <!--Line-1: <menuitem id="menu_test" parent="hr.menu_hr_root" name="Birthdays"/>
 
-              Line-2: <menuitem id="menu_test_child" parent="menu_test" name="Upcoming birthdays" action="action_test"/>
-
-            -->
+<!-- skirti pridet i employees / birthdyas / Upcoming birthdays  -->
+    <menuitem id="menu_birthday" parent="hr.menu_hr_root" name="Birthdays"/>
+    <menuitem id="menu_birhtday_child" parent="menu_birthday" name="Upcoming birthdays" action="birth_list_action"/>
