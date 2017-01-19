@@ -9,13 +9,16 @@
           <sheet>
             <group>
               <field name="name"/>
-              <field name="description"/>
+              <field name="birthday_employee"/>
+              <field name="active"/>
+              <field name="birthday_date"/>
+              <field name="department_id"/>
+              <field name="celebration_date"/>
             </group>
           </sheet>
         </form>
       </field>
     </record>
-
 <!-- tree view -->
     <record model="ir.ui.view" id="birht_tree_view">
       <field name="name">birth.tree</field>
@@ -26,8 +29,6 @@
         </tree>
       </field>
     </record>
-    
-
    <!-- birth actionas act_window -->
     <record model="ir.actions.act_window" id="birthday_list_action">
       <field name="name">Birthdays</field>
@@ -39,8 +40,6 @@
         </p>
       </field>
     </record>
-
-
 <!-- skirti pridet i employees / birthdyas / Upcoming birthdays  -->
     <menuitem id="menu_birthday" parent="hr.menu_hr_root" name="Birthdays"/>
     <menuitem id="menu_birhtday_child" parent="menu_birthday" name="Upcoming birthdays" action="birth_list_action"/>
