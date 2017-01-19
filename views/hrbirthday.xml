@@ -26,6 +26,9 @@
       <field name="arch" type="xml">
         <tree string="Birht tree">
           <field name="name"/>
+          <field name="birthday_employee"/>
+          <field name="birthday_date"/>
+          <field name="department_id"/>
         </tree>
       </field>
     </record>
