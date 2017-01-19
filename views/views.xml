@@ -1,6 +1,6 @@
 <odoo>
   <data>
-    <record model="ir.ui.view" id="hr_birthday.list">
+<!--    <record model="ir.ui.view" id="hr_birthday.list">
       <field name="name">hr_birthday list</field>
       <field name="model">hr_birthday.hr_birthday</field>
       <field name="arch" type="xml">
@@ -14,7 +14,7 @@
 
     <record model="ir.actions.act_window" id="hr_birthday.action_window">
       <field name="name">hr_birthday window</field>
-      <field name="res_model">hr_birthday.hr_birthday</field>
+      <field name="res_model">hr_birthday.birth</field>
       <field name="view_mode">tree,form</field>
     </record>
 
@@ -34,9 +34,9 @@
     <menuitem name="Menu 1" id="hr_birthday.menu_1" parent="hr_birthday.menu_root"/>
     <menuitem name="Menu 2" id="hr_birthday.menu_2" parent="hr_birthday.menu_root"/>
     <!-- actions -->
-    <menuitem name="List" id="hr_birthday.menu_1_list" parent="hr_birthday.menu_1"
+  <!--  <menuitem name="List" id="hr_birthday.menu_1_list" parent="hr_birthday.menu_1"
               action="hr_birthday.action_window"/>
     <menuitem name="Server to list" id="hr_birthday" parent="hr_birthday.menu_2"
-              action="hr_birthday.action_server"/>
+              action="hr_birthday.action_server"/> --> 
   </data>
 </odoo>

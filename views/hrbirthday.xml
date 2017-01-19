@@ -22,7 +22,7 @@
 <!-- tree view -->
     <record model="ir.ui.view" id="birht_tree_view">
       <field name="name">birth.tree</field>
-      <field name="model">"hr_birthday.birth"</field>
+      <field name="model">"hr_birthday.birthday"</field>
       <field name="arch" type="xml">
         <tree string="Birht tree">
           <field name="name"/>
