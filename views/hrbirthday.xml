@@ -2,8 +2,8 @@
   <data>
 <!-- form view -->
     <record model="ir.ui.view" id="birth_form_view">
-      <field name="name">birth.form</field>
-      <field name="model">hr_birthday.birthday</field>
+      <field name="name">birthday.form</field>
+      <field name="model">hrbirthday.birthday</field>
       <field name="arch" type="xml">
         <form string="Birth Form">
           <sheet>
@@ -20,8 +20,8 @@
     </record>
 <!-- tree view -->
     <record model="ir.ui.view" id="birht_tree_view">
-      <field name="name">birth.tree</field>
-      <field name="model">hr_birthday.birthday</field>
+      <field name="name">birthday.tree</field>
+      <field name="model">hrbirthday.birthday</field>
       <field name="arch" type="xml">
         <tree string="Birht tree">
           <field name="name"/>
@@ -34,7 +34,7 @@
    <!-- birth actionas act_window -->
     <record model="ir.actions.act_window" id="birthday_list_action">
       <field name="name">Birthdays</field>
-      <field name="res_model">hr_birthday.birth</field>
+      <field name="res_model">hrbirthday.birthday</field>
       <field name="view_type">form</field>
       <field name="view_mode">tree,from</field>
       <field name="help" type="html">
