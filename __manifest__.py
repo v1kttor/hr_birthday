@@ -25,7 +25,7 @@
         # 'security/ir.model.access.csv',
         'views/views.xml',
         'views/templates.xml',
-        'views/hrbirthday.xml',
+        #'views/hrbirthday.xml',
     ],
     # only loaded in demonstration mode
     'demo': [
