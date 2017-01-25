@@ -12,11 +12,23 @@
       <t t-call="report.html_container">
         <t t-foreach="docs" t-as="doc">
           <div class="page">
-            <!--<h2 t-field="doc.birthday_employee"/> -->
-            <!--<p>From <span t-field="doc.birthday_date"/> to <span t-field="doc.celebration_date"/></p>
-            <h3>Attendees:</h3> --> <!-- reitku susitvarykt -->
-            <ul>
-            </ul>
+            <h3>Birthdays</h3>
+            <table>
+              <tr>
+                <th>Name</th><td></td><td></td>&#009;&#009;&#009;&#009;&#009; <th>Date of Birth</th>
+              </tr>
+              <t t-foreach="doc.member_ids" t-as="member">
+                  <tr>
+                    <td><span t-field="member.display_name"/></td>
+                    <td></td><td></td>
+                    <br/><td><span t-field="member.birthday"/></td>
+                  </tr>
+              </t>
+              <!--<span t-foreach="doc.member_ids" t-as="member">
+                <span t-if="member_ids == True"><t t-esc="member.birthday" /></span>
+                <span t-if="not member.birthday"><t t-esc="error 404" /></span>
+              </span> -->
+            </table>
           </div>
         </t>
       </t>
