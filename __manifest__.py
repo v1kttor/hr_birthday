@@ -25,9 +25,11 @@
         'security/ir.model.access.csv', # nors dar reiktu patvarkyt pagal hive uzduoti . daugiau pagooglint
         #'views/views.xml',
         #'views/templates.xml',
-        'views/hrbirthday.xml',
+        #'views/hr.xml',
         'security/security.xml',
         'views/reports.xml',
+        'data/ir.xml',
+        'views/hrb.xml',
     ],
     # only loaded in demonstration mode
     'demo': [

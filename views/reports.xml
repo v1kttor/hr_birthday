@@ -2,19 +2,19 @@
   <data>
     <report
       id="report_birthday"
-      model="hr.birthday"
+      model="hr.department"
       string="Birthday Report"
-      name="hr.birthday_view"
+      name="hr.department_view"
       file="hr.report_birthday"
       report_type="qweb-pdf" />
 
-    <template id="hr.birthday_view">
+    <template id="hr.department_view">
       <t t-call="report.html_container">
         <t t-foreach="docs" t-as="doc">
           <div class="page">
-            <h2 t-field="doc.birthday_employee"/>
-            <p>From <span t-field="doc.birthday_date"/> to <span t-field="doc.celebration_date"/></p>
-            <h3>Attendees:</h3>
+            <!--<h2 t-field="doc.birthday_employee"/> -->
+            <!--<p>From <span t-field="doc.birthday_date"/> to <span t-field="doc.celebration_date"/></p>
+            <h3>Attendees:</h3> --> <!-- reitku susitvarykt -->
             <ul>
             </ul>
           </div>
