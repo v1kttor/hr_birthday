@@ -27,6 +27,7 @@
               <field name="birthday_date"/>
               <field name="department_id"/>
               <field name="celebration_date"/>
+              <field name="location"/>
             </group>
           </sheet>
           <!-- mail thread -->
@@ -63,6 +64,6 @@
     </record>
 <!-- skirti pridet i employees / birthdays / Upcoming birthdays  -->
     <menuitem id="menu_birthday" parent="hr.menu_hr_root" name="Birthdays"/>
-    <menuitem id="menu_birhtday_child" parent="menu_birthday" name="Upcoming birthdays" action="birthday_list_action"/>
+    <menuitem id="menu_birthday_child" parent="menu_birthday" name="Upcoming birthdays" action="birthday_list_action"/>
  </data>
  </odoo>

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from odoo import models, fields, api
-#from datetime import timedelta
+from datetime import date, datetime, timedelta
 
 
 #class hrbirthday(models.Model):
@@ -16,6 +16,17 @@ from odoo import models, fields, api
 #    def _value_pc(self):
 #        self.value2 = float(self.value) / 100
 
+def employee_birthdate(employee):
+    r = datetime.strptime(employee.birthday, '%Y-%m-%d')
+    return (r.month, r.day)
+
+
+class Reports(models.Model):
+    _inherit = 'hr.employee'
+
+    @api.multi
+    def sort_by_birthday(self):
+        return self.sorted(key=employee_birthdate)
 
 class Birthday(models.Model):
     _name = 'hr.birthday'
@@ -25,6 +36,7 @@ class Birthday(models.Model):
     birthday_date = fields.Date()
     department_id = fields.Many2one('hr.department')
     celebration_date = fields.Datetime()
+    location = fields.Char(string="Location", required=True)
     active = fields.Boolean(default=True)
 
 
@@ -35,10 +47,13 @@ class Department(models.Model):
     birthday_remind_days = fields.Integer()
 
     def _cron_check_birthdays(self):
-        if check_birthdays == True and birthday_remind_days == True:
-            return True
-        else:
-            pass # create event
+        today = date.today()
+        departments = self.search([('check_birthdays', '=', True)])
+        for department in departments:
+            days = timedelta(days=department.birthday_remind_days)
+            if
+            #import pdb; pdb.set_trace()
+            pass
 
 
 #    A Cron job runs (default interval: 2 hours) and checks each department,

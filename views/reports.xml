@@ -13,21 +13,16 @@
         <t t-foreach="docs" t-as="doc">
           <div class="page">
             <h3>Birthdays</h3>
-            <table>
+            <table class="table table-striped">
               <tr>
-                <th>Name</th><td></td><td></td>&#009;&#009;&#009;&#009;&#009; <th>Date of Birth</th>
+                <th>Name</th><th>Birthday</th>
               </tr>
-              <t t-foreach="doc.member_ids" t-as="member">
+              <t t-foreach="doc.member_ids.filtered('birthday').sort_by_birthday()" t-as="member">
                   <tr>
                     <td><span t-field="member.display_name"/></td>
-                    <td></td><td></td>
-                    <br/><td><span t-field="member.birthday"/></td>
+                    <td><span t-field="member.birthday"/></td>
                   </tr>
               </t>
-              <!--<span t-foreach="doc.member_ids" t-as="member">
-                <span t-if="member_ids == True"><t t-esc="member.birthday" /></span>
-                <span t-if="not member.birthday"><t t-esc="error 404" /></span>
-              </span> -->
             </table>
           </div>
         </t>
