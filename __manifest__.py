@@ -8,8 +8,8 @@
         Very very very long description of module's purpose
     """,
 
-    'author': "hacby",
-    'website': "http://www.hacby.com",
+    'author': "hbee",
+    'website': "http://www.hbee.com",
 
     # Categories can be used to filter modules in modules listing
     # Check https://github.com/odoo/odoo/blob/master/odoo/addons/base/module/module_data.xml

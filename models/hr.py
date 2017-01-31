@@ -20,7 +20,6 @@ def employee_birthdate(employee):
     r = datetime.strptime(employee.birthday, '%Y-%m-%d')
     return (r.month, r.day)
 
-
 class Reports(models.Model):
     _inherit = 'hr.employee'
 
@@ -31,12 +30,13 @@ class Reports(models.Model):
 class Birthday(models.Model):
     _name = 'hr.birthday'
     _inherit = ['mail.thread']
+    _description = 'Birthday Module'
+    _order = 'birthday_date desc, birthday_employee'
 
-    birthday_employee = fields.Many2one('hr.employee')
+    birthday_employee = fields.Many2one('hr.employee', string="Birthday Employee")
     birthday_date = fields.Date()
-    department_id = fields.Many2one('hr.department')
+    department_id = fields.Many2one('hr.department', string="Department")
     celebration_date = fields.Datetime()
-    location = fields.Char(string="Location", required=True)
     active = fields.Boolean(default=True)
 
 
@@ -49,17 +49,31 @@ class Department(models.Model):
     def _cron_check_birthdays(self):
         today = date.today()
         departments = self.search([('check_birthdays', '=', True)])
+        birthday_obj = self.env['hr.birthday']
+
         for department in departments:
-            days = timedelta(days=department.birthday_remind_days)
-            if
-            #import pdb; pdb.set_trace()
-            pass
+            remind_days = timedelta(days=department.birthday_remind_days) # birthday_remind_days number of days
+            for member in department.member_ids.filtered('birthday'):
+                member_birthday = datetime.strptime(
+                    member.birthday, '%Y-%m-%d').date()
+                member_birthday = member_birthday.replace(year=today.year)
+                difference = member_birthday - today
+                if difference == remind_days:
+                    events = birthday_obj.search([
+                        ('birthday_employee', '=', member.id),
+                        ('birthday_date', '=', member_birthday),
+                    ])
+                    if events:
+                        continue
+                    event_vals = {
+                        'birthday_employee' : member.id,
+                        'birthday_date' : member_birthday,
+                        'department_id' : department.id,
+                        'active' : True,
+                        }
+                    birthday_obj.create(event_vals)
+                    #import pdb; pdb.set_trace()
 
-
-#    A Cron job runs (default interval: 2 hours) and checks each department,
-# which would like to be informed on birthdays (check_birthdays == True)
-# and if there are any upcoming birthdays in birthday_remind_days number
-# of days.
 # If there are, a birthday event (hr.birthday) record
 #(if not yet exists) is created for the birthday of the employee.
 
