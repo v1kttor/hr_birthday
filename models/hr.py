@@ -4,18 +4,18 @@ from odoo import models, fields, api
 from datetime import date, datetime, timedelta
 
 
-#class hrbirthday(models.Model):
-#    _name = 'hrbirhtday.hrbirthday'
+"""#class hrbirthday(models.Model):
+    _name = 'hrbirhtday.hrbirthday'
 
-#    name = fields.Char()
-#    value = fields.Integer()
-#    value2 = fields.Float(compute="_value_pc", store=True)
-#    description = fields.Text()
+    name = fields.Char()
+    value = fields.Integer()
+   value2 = fields.Float(compute="_value_pc", store=True)
+    description = fields.Text()
 
-#    @api.depends('value')
-#    def _value_pc(self):
-#        self.value2 = float(self.value) / 100
-
+    @api.depends('value')
+    def _value_pc(self):
+        self.value2 = float(self.value) / 100
+"""
 def employee_birthdate(employee):
     r = datetime.strptime(employee.birthday, '%Y-%m-%d')
     return (r.month, r.day)
@@ -33,8 +33,8 @@ class Birthday(models.Model):
     _description = 'Birthday Module'
     _order = 'birthday_date desc, birthday_employee'
 
-    birthday_employee = fields.Many2one('hr.employee', string="Birthday Employee")
-    birthday_date = fields.Date()
+    birthday_employee = fields.Many2one('hr.employee', string="Birthday Employee", track_visibility=True)
+    birthday_date = fields.Date(track_visibility=True)
     department_id = fields.Many2one('hr.department', string="Department")
     celebration_date = fields.Datetime()
     active = fields.Boolean(default=True)
@@ -44,7 +44,7 @@ class Department(models.Model):
     _inherit = 'hr.department'
 
     check_birthdays = fields.Boolean(default=True)
-    birthday_remind_days = fields.Integer()
+    birthday_remind_days = fields.Integer(default=7)
 
     def _cron_check_birthdays(self):
         today = date.today()
@@ -71,14 +71,15 @@ class Department(models.Model):
                         'department_id' : department.id,
                         'active' : True,
                         }
-                    birthday_obj.create(event_vals)
-                    #import pdb; pdb.set_trace()
+                    event = birthday_obj.create(event_vals)
+                    followers = department.member_ids - member
+                    followers = followers.filtered('user_id')
+                    f = []
+                    for follower in followers:
+                        f.append(follower.user_id.partner_id.id)
+                    event.message_subscribe(partner_ids=f)
 
-# If there are, a birthday event (hr.birthday) record
-#(if not yet exists) is created for the birthday of the employee.
-
-#   All employees of the department (including the manager, if any)
-# of the birthday boy/girl are made followers of the birthday event document.
+# Module should have tests with at least 80% code coverage (coverage is optional).
 
 #   Email notifications are sent to all the followers
 # (except the birthday boy/girl) informing about the upcoming event.
