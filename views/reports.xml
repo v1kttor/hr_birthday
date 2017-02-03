@@ -13,6 +13,7 @@
         <t t-foreach="docs" t-as="doc">
           <div class="page">
             <h3>Birthdays</h3>
+            <newline />
             <table class="table table-striped">
               <tr>
                 <th>Name</th><th>Birthday</th>

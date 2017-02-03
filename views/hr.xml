@@ -1,6 +1,5 @@
 <odoo>
   <data>
-
     <!-- check_birthdays and birthday_remind_days fields in hr.department from view -->
     <record id="birthday_department_view" model="ir.ui.view">
       <field name="name">hr.department.form</field>
@@ -13,7 +12,6 @@
         </field>
         </field>
     </record>
-
 <!-- form view -->
     <record model="ir.ui.view" id="birth_form_view">
       <field name="name">birthday.form</field>
@@ -56,12 +54,12 @@
       <field name="view_type">form</field>
       <field name="view_mode">tree,form</field>
       <field name="help" type="html">
-        <p class="oe_view_nocontent_create">Tell us the celebration Date
+        <p class="oe_view_nocontent_create">Hello, tell us about an upcoming birthday! :)
         </p>
       </field>
     </record>
 <!-- skirti pridet i employees / birthdays / Upcoming birthdays  -->
     <menuitem id="menu_birthday" parent="hr.menu_hr_root" name="Birthdays" sequence="1"/>
     <menuitem id="menu_birthday_child" parent="menu_birthday" name="Upcoming birthdays" action="birthday_list_action"/>
- </data>
+  </data>
  </odoo>

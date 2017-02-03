@@ -33,7 +33,8 @@ class Birthday(models.Model):
     _description = 'Birthday Module'
     _order = 'birthday_date desc, birthday_employee'
 
-    birthday_employee = fields.Many2one('hr.employee', string="Birthday Employee", track_visibility=True)
+    birthday_employee = fields.Many2one(
+        'hr.employee', string="Birthday Employee", track_visibility=True)
     birthday_date = fields.Date(track_visibility=True)
     department_id = fields.Many2one('hr.department', string="Department")
     celebration_date = fields.Datetime()
@@ -52,7 +53,7 @@ class Department(models.Model):
         birthday_obj = self.env['hr.birthday']
 
         for department in departments:
-            remind_days = timedelta(days=department.birthday_remind_days) # birthday_remind_days number of days
+            remind_days = timedelta(days=department.birthday_remind_days)
             for member in department.member_ids.filtered('birthday'):
                 member_birthday = datetime.strptime(
                     member.birthday, '%Y-%m-%d').date()
@@ -79,7 +80,13 @@ class Department(models.Model):
                         f.append(follower.user_id.partner_id.id)
                     event.message_subscribe(partner_ids=f)
 
-# Module should have tests with at least 80% code coverage (coverage is optional).
+                    #event.message_post(partner_ids=f.email)
+                    birthday_template = self.env['mail.template']
+                    inform.message_post(partner_ids=f.email)
+                    inform = birthday_template.send_mail(force_send=True)
 
-#   Email notifications are sent to all the followers
-# (except the birthday boy/girl) informing about the upcoming event.
+                    # templatas yra , bet nebekuria gimtadieniu artejanciu.
+
+                    # tik reikia kad inform paruostu ir siustu mailus
+
+# Module should have tests with at least 80% code coverage (coverage is optional).

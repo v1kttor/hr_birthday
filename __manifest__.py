@@ -29,6 +29,7 @@
         'views/reports.xml',
         'data/ir.xml',
         'views/hr.xml',
+        'views/mail.xml',
     ],
     # only loaded in demonstration mode
     'demo': [
