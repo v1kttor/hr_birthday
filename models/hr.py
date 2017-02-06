@@ -4,34 +4,40 @@ from odoo import models, fields, api
 from datetime import date, datetime, timedelta
 
 
-"""#class hrbirthday(models.Model):
-    _name = 'hrbirhtday.hrbirthday'
-
-    name = fields.Char()
-    value = fields.Integer()
-   value2 = fields.Float(compute="_value_pc", store=True)
-    description = fields.Text()
-
-    @api.depends('value')
-    def _value_pc(self):
-        self.value2 = float(self.value) / 100
-"""
 def employee_birthdate(employee):
     r = datetime.strptime(employee.birthday, '%Y-%m-%d')
     return (r.month, r.day)
 
-class Reports(models.Model):
+
+class HrBirthday(models.Model):
     _inherit = 'hr.employee'
+
+    @api.multi
+    def get_upcoming_birthday_date(self, delta_days, today_date=None):
+        self.ensure_one()
+        if today_date is None:
+            today_date = date.today()
+        if not self.birthday:
+            return
+        birthday = datetime.strptime(self.birthday, '%Y-%m-%d').date()
+        birthday = birthday.replace(year=today_date.year)
+        delta = timedelta(days=delta_days)
+        zero = timedelta()
+        diff = birthday - today_date
+        if diff > zero and diff <= delta:
+            return birthday
 
     @api.multi
     def sort_by_birthday(self):
         return self.sorted(key=employee_birthdate)
+
 
 class Birthday(models.Model):
     _name = 'hr.birthday'
     _inherit = ['mail.thread']
     _description = 'Birthday Module'
     _order = 'birthday_date desc, birthday_employee'
+
 
     birthday_employee = fields.Many2one(
         'hr.employee', string="Birthday Employee", track_visibility=True)
@@ -47,19 +53,17 @@ class Department(models.Model):
     check_birthdays = fields.Boolean(default=True)
     birthday_remind_days = fields.Integer(default=7)
 
+
     def _cron_check_birthdays(self):
-        today = date.today()
         departments = self.search([('check_birthdays', '=', True)])
         birthday_obj = self.env['hr.birthday']
 
         for department in departments:
-            remind_days = timedelta(days=department.birthday_remind_days)
             for member in department.member_ids.filtered('birthday'):
-                member_birthday = datetime.strptime(
-                    member.birthday, '%Y-%m-%d').date()
-                member_birthday = member_birthday.replace(year=today.year)
-                difference = member_birthday - today
-                if difference == remind_days:
+                member_birthday = member.get_upcoming_birthday_date(
+                    department.birthday_remind_days)
+
+                if member_birthday:
                     events = birthday_obj.search([
                         ('birthday_employee', '=', member.id),
                         ('birthday_date', '=', member_birthday),
@@ -77,16 +81,9 @@ class Department(models.Model):
                     followers = followers.filtered('user_id')
                     f = []
                     for follower in followers:
-                        f.append(follower.user_id.partner_id.id)
+                        f.append(follower.user_id.partner_id.id) # prideda followerius
                     event.message_subscribe(partner_ids=f)
+                    template = self.env.ref("hr_birthday.email_template_birthday")
+                    event.message_post_with_template(template.id)
 
-                    #event.message_post(partner_ids=f.email)
-                    birthday_template = self.env['mail.template']
-                    inform.message_post(partner_ids=f.email)
-                    inform = birthday_template.send_mail(force_send=True)
-
-                    # templatas yra , bet nebekuria gimtadieniu artejanciu.
-
-                    # tik reikia kad inform paruostu ir siustu mailus
-
-# Module should have tests with at least 80% code coverage (coverage is optional).
+                    # Module should have tests with at least 80% code coverage (coverage is optional).
