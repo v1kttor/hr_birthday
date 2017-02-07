@@ -9,6 +9,10 @@ class TestHrEmployee(common.TransactionCase):
         test_cases = [
             (date(2017, 02, 15), '1987-02-18', 5, date(2017, 02, 18)),
             (date(2017, 02, 15), '1987-03-18', 5, None),
+            (date(1990, 02, 18), '1987-04-18', 10, None),
+            (date(2017, 02, 15), None, 5, None),
+            (date(2018, 03, 20), '1980-05-22', 3, None),
+
         ]
         for i in test_cases:
             today = i[0]
