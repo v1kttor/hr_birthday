@@ -1,0 +1,186 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* hr_birthday
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-02-07 11:13+0000\n"
+"PO-Revision-Date: 2017-02-07 11:13+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: hr_birthday
+#: model:mail.template,body_html:hr_birthday.email_template_birthday
+msgid "\n"
+"        \n"
+"	      <p>Dear followers,<br/><br/>\n"
+"	      We would like to inform you about an upcoming birthday!\n"
+"      ]|\n"
+"     <br/></p>\n"
+"              Regards,<br/>\n"
+"              ${(object.department_id.company_id.name)}\n"
+"	    \n"
+"      "
+msgstr "\n"
+"        \n"
+"	      <p>Brangūs sekėjai,<br/><br/>\n"
+"	      Mes norėtume informuoti jus apie artėjantį gimtadienį!\n"
+"      ]|\n"
+"     <br/></p>\n"
+"              Pagarbiai,<br/>\n"
+"              ${(object.department_id.company_id.name)}\n"
+"	    \n"
+"      "
+
+#. module: hr_birthday
+#: model:ir.model.fields,field_description:hr_birthday.field_hr_birthday_active
+msgid "Active"
+msgstr "Aktyvus"
+
+#. module: hr_birthday
+#: model:ir.ui.view,arch_db:hr_birthday.birht_tree_view
+msgid "Birht tree"
+msgstr "Birht tree"
+
+#. module: hr_birthday
+#: model:ir.ui.view,arch_db:hr_birthday.birth_form_view
+msgid "Birth Form"
+msgstr "Birth Form"
+
+#. module: hr_birthday
+#: model:res.groups,name:hr_birthday.group_manager
+msgid "Birthday / Manager"
+msgstr "Gimtadienio vadybininkas"
+
+#. module: hr_birthday
+#: model:ir.model.fields,field_description:hr_birthday.field_hr_birthday_birthday_employee
+msgid "Birthday Employee"
+msgstr "Darbuotojo gimtadienis"
+
+#. module: hr_birthday
+#: model:ir.model,name:hr_birthday.model_hr_birthday
+msgid "Birthday Module"
+msgstr "Gimtadienio modulis"
+
+#. module: hr_birthday
+#: model:ir.actions.report.xml,name:hr_birthday.report_birthday
+msgid "Birthday Report"
+msgstr "Gimtadienio ataskaita"
+
+#. module: hr_birthday
+#: model:ir.model.fields,field_description:hr_birthday.field_hr_birthday_birthday_date
+msgid "Birthday date"
+msgstr "Gimtadienio diena"
+
+#. module: hr_birthday
+#: model:ir.model.fields,field_description:hr_birthday.field_hr_department_birthday_remind_days
+msgid "Birthday remind days"
+msgstr "Gimtadienio priminimo dienos"
+
+#. module: hr_birthday
+#: model:ir.actions.act_window,name:hr_birthday.birthday_list_action
+#: model:ir.ui.menu,name:hr_birthday.menu_birthday
+msgid "Birthdays"
+msgstr "Gimtadieniai"
+
+#. module: hr_birthday
+#: model:ir.model.fields,field_description:hr_birthday.field_hr_birthday_celebration_date
+msgid "Celebration date"
+msgstr "Šventimo diena"
+
+#. module: hr_birthday
+#: model:ir.model.fields,field_description:hr_birthday.field_hr_department_check_birthdays
+msgid "Check birthdays"
+msgstr "Tikrinti gimtadienius"
+
+#. module: hr_birthday
+#: model:ir.model.fields,field_description:hr_birthday.field_hr_birthday_create_uid
+msgid "Created by"
+msgstr "Sukūrė"
+
+#. module: hr_birthday
+#: model:ir.model.fields,field_description:hr_birthday.field_hr_birthday_create_date
+msgid "Created on"
+msgstr "Sukurta"
+
+#. module: hr_birthday
+#: model:ir.model.fields,field_description:hr_birthday.field_hr_birthday_department_id
+msgid "Department"
+msgstr "Padalinys"
+
+#. module: hr_birthday
+#: model:ir.model.fields,field_description:hr_birthday.field_hr_birthday_display_name
+msgid "Display Name"
+msgstr "Vardas"
+
+#. module: hr_birthday
+#: model:ir.model,name:hr_birthday.model_hr_employee
+msgid "Employee"
+msgstr "Darbuotojas"
+
+#. module: hr_birthday
+#: model:ir.actions.act_window,help:hr_birthday.birthday_list_action
+msgid "Hello, tell us about an upcoming birthday! :)"
+msgstr "Sveiki, praneškite mums apie artėjantį gimtadienį! :)"
+
+#. module: hr_birthday
+#: model:ir.model,name:hr_birthday.model_hr_department
+msgid "Hr Department"
+msgstr "Hr Department"
+
+#. module: hr_birthday
+#: model:ir.model.fields,field_description:hr_birthday.field_hr_birthday_id
+msgid "ID"
+msgstr "ID"
+
+#. module: hr_birthday
+#: model:ir.model.fields,field_description:hr_birthday.field_hr_birthday___last_update
+msgid "Last Modified on"
+msgstr "Paskutinį kartą keista"
+
+#. module: hr_birthday
+#: model:ir.model.fields,field_description:hr_birthday.field_hr_birthday_write_uid
+msgid "Last Updated by"
+msgstr "Paskutinį kartą atnaujino"
+
+#. module: hr_birthday
+#: model:ir.model.fields,field_description:hr_birthday.field_hr_birthday_write_date
+msgid "Last Updated on"
+msgstr "Paskutinį kartą atnaujinta"
+
+#. module: hr_birthday
+#: model:mail.template,subject:hr_birthday.email_template_birthday
+msgid "Upcoming birthday"
+msgstr "Artėjantis gimtadienis"
+
+#. module: hr_birthday
+#: model:ir.ui.menu,name:hr_birthday.menu_birthday_child
+msgid "Upcoming birthdays"
+msgstr "Artėjantis gimtadienis"
+
+#. module: hr_birthday
+#: model:ir.model,name:hr_birthday.model_hr_birthday_hrbirthday
+msgid "hr_birthday.hrbirthday"
+msgstr "hr_birthday.hrbirthday"
+
+#. module: hr_birthday
+#: model:ir.model,name:hr_birthday.model_hrbirhtday_hrbirthday
+msgid "hrbirhtday.hrbirthday"
+msgstr "hrbirhtday.hrbirthday"
+
+#. module: hr_birthday
+#: model:ir.model,name:hr_birthday.model_hrbirthday_birthday
+msgid "hrbirthday.birthday"
+msgstr "hrbirthday.birthday"
+
+#. module: hr_birthday
+#: model:ir.model,name:hr_birthday.model_hrbirthday_department
+msgid "hrbirthday.department"
+msgstr "hrbirthday.department"
+
