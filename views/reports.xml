@@ -12,14 +12,15 @@
       <t t-call="report.html_container">
         <t t-foreach="docs" t-as="doc">
           <div class="page">
-            <h3>Birthdays</h3>
+            <h3> <span t-field="doc.name"/> Department Birthdays </h3>
             <newline />
             <table class="table table-striped">
               <tr>
-                <th>Name</th><th>Birthday</th>
+                <th>#</th><th>Name</th><th>Birthday</th>
               </tr>
               <t t-foreach="doc.member_ids.filtered('birthday').sort_by_birthday()" t-as="member">
                   <tr>
+                    <td><span t-esc="member_index + 1"/></td>
                     <td><span t-field="member.display_name"/></td>
                     <td><span t-field="member.birthday"/></td>
                   </tr>
