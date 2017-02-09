@@ -52,10 +52,8 @@
       <field name="name">birthday.calendar</field>
       <field name="model">hr.birthday</field>
       <field name="arch" type="xml">
-          <calendar string="Birthday Calendar" date_start="birthday_date"
-                    date_stop="celebration_date"
-                    color="birthday_employee">
-              <!--<field name="birthday_employee"/> -->
+          <calendar string="Birthday Calendar" date_start="birthday_date" date_stop="birthday_date" color="birthday_employee" mode="month">
+              <field name="birthday_employee"/>
           </calendar>
       </field>
     </record>
