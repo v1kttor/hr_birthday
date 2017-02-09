@@ -12,7 +12,7 @@
       <t t-call="report.html_container">
         <t t-foreach="docs" t-as="doc">
           <div class="page">
-            <h3> <span t-field="doc.name"/> Department Birthdays </h3>
+            <h3> <span t-field="doc.name"/> Department Birthdays</h3>
             <newline />
             <table class="table table-striped">
               <tr>

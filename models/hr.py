@@ -9,7 +9,7 @@ def employee_birthdate(employee):
     return (r.month, r.day)
 
 
-class HrBirthday(models.Model):
+class HrEmployee(models.Model):
     _inherit = 'hr.employee'
 
     @api.multi
@@ -32,20 +32,28 @@ class HrBirthday(models.Model):
         return self.sorted(key=employee_birthdate)
 
 
-class Birthday(models.Model):
+class HrBirthday(models.Model):
     _name = 'hr.birthday'
     _inherit = ['mail.thread']
-    _description = 'Birthday Module'
-    _order = 'birthday_date desc, birthday_employee'
-
+    _description = 'Birthday Event'
+    _order = 'birthday_date'
 
     birthday_employee = fields.Many2one(
-        'hr.employee', string="Birthday Employee", track_visibility=True)
-    birthday_date = fields.Date(track_visibility=True)
+        'hr.employee', string="Birthday Employee")
+    birthday_date = fields.Date()
     department_id = fields.Many2one('hr.department', string="Department")
-    celebration_date = fields.Datetime()
+    celebration_date = fields.Datetime(track_visibility=True)
     active = fields.Boolean(default=True)
+    color = fields.Integer()
 
+    def name_get(self):
+        result = []
+        for hrbirthday in self:
+            name = hrbirthday.birthday_employee.name + ' ' + hrbirthday.birthday_date
+            #name = hrbirthday.birthday_employee.name + ' ' + hrbirthday.birthday_employee.birthday
+            # buvo taip, bet mete error'a nes ne visi employees turi gimtadienius.
+            result.append((hrbirthday.id, name))
+        return result
 
 class Department(models.Model):
     _inherit = 'hr.department'

@@ -22,10 +22,11 @@
 
     # always loaded
     'data': [
-        'security/ir.model.access.csv', # nors dar reiktu patvarkyt pagal hive uzduoti . daugiau pagooglint
+        'security/ir.model.access.csv',
         #'views/views.xml',
         #'views/templates.xml',
         'security/security.xml',
+        'security/hr_birthday.xml',
         'views/reports.xml',
         'data/ir.xml',
         'views/hr.xml',

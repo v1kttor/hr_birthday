@@ -47,12 +47,24 @@
         </tree>
       </field>
     </record>
+    <!-- calendar view -->
+    <record model="ir.ui.view" id="birthday_calendar_view">
+      <field name="name">birthday.calendar</field>
+      <field name="model">hr.birthday</field>
+      <field name="arch" type="xml">
+          <calendar string="Birthday Calendar" date_start="birthday_date"
+                    date_stop="celebration_date"
+                    color="birthday_employee">
+              <!--<field name="birthday_employee"/> -->
+          </calendar>
+      </field>
+    </record>
    <!-- birth actionas act_window -->
     <record model="ir.actions.act_window" id="birthday_list_action">
       <field name="name">Birthdays</field>
       <field name="res_model">hr.birthday</field>
       <field name="view_type">form</field>
-      <field name="view_mode">tree,form</field>
+      <field name="view_mode">tree,form,calendar</field>
       <field name="help" type="html">
         <p class="oe_view_nocontent_create">Hello, tell us about an upcoming birthday! :)
         </p>
