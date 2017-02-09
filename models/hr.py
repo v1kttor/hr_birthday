@@ -39,21 +39,25 @@ class HrBirthday(models.Model):
     _order = 'birthday_date'
 
     birthday_employee = fields.Many2one(
-        'hr.employee', string="Birthday Employee")
-    birthday_date = fields.Date()
+        'hr.employee', string="Birthday Employee", required=True)
+    birthday_date = fields.Date(required=True) # required=True
     department_id = fields.Many2one('hr.department', string="Department")
     celebration_date = fields.Datetime(track_visibility=True)
     active = fields.Boolean(default=True)
     color = fields.Integer()
 
+
     def name_get(self):
         result = []
         for hrbirthday in self:
-            name = hrbirthday.birthday_employee.name + ' ' + hrbirthday.birthday_date
-            #name = hrbirthday.birthday_employee.name + ' ' + hrbirthday.birthday_employee.birthday
-            # buvo taip, bet mete error'a nes ne visi employees turi gimtadienius.
-            result.append((hrbirthday.id, name))
+            if hrbirthday.birthday_employee.birthday == False and hrbirthday.birthday_date == False:
+                name = hrbirthday.birthday_employee.name
+                result.append((hrbirthday.id, name))
+            else:
+                name = hrbirthday.birthday_employee.name + ' ' + hrbirthday.birthday_date
+                result.append((hrbirthday.id, name))
         return result
+
 
 class Department(models.Model):
     _inherit = 'hr.department'
@@ -93,5 +97,3 @@ class Department(models.Model):
                     event.message_subscribe(partner_ids=f)
                     template = self.env.ref("hr_birthday.email_template_birthday")
                     event.message_post_with_template(template.id)
-
-                    # Module should have tests with at least 80% code coverage (coverage is optional).
