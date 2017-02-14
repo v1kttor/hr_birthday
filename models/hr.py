@@ -40,23 +40,50 @@ class HrBirthday(models.Model):
 
     birthday_employee = fields.Many2one(
         'hr.employee', string="Birthday Employee", required=True)
-    birthday_date = fields.Date(required=True) # required=True
+    birthday_date = fields.Date(required=True)
     department_id = fields.Many2one('hr.department', string="Department")
     celebration_date = fields.Datetime(track_visibility=True)
     active = fields.Boolean(default=True)
     color = fields.Integer()
 
+    @api.multi
+    def get_old_birthdays(self, active_days, today_date=None):
+        self.ensure_one()
+        if today_date is None:
+            today_date = date.today()
+        if not self.birthday_date:
+            return
+        false_days = timedelta(days=active_days)
+        false_date = today_date - false_days
+        birthday_date = datetime.strptime(
+            self.birthday_date, '%Y-%m-%d').date()
+        birthday_date = birthday_date.replace(year=today_date.year)
+        if birthday_date <= false_date:
+            return birthday_date
 
     def name_get(self):
         result = []
         for hrbirthday in self:
-            if hrbirthday.birthday_employee.birthday == False and hrbirthday.birthday_date == False:
+            if (not hrbirthday.birthday_employee.birthday and
+                    not hrbirthday.birthday_date):
                 name = hrbirthday.birthday_employee.name
                 result.append((hrbirthday.id, name))
             else:
-                name = hrbirthday.birthday_employee.name + ' ' + hrbirthday.birthday_date
+                name = (hrbirthday.birthday_employee.name +
+                        ' ' + hrbirthday.birthday_date)
                 result.append((hrbirthday.id, name))
         return result
+
+    def _cron_check_old_birthdays_events(self):
+        days_to_false = timedelta(days=14)
+        today = date.today()
+        birthdays = self.search([
+            ('active', '=', True),
+            ('birthday_date', '!=', False),
+            ('birthday_date', '<', today - days_to_false)
+        ])
+        for birthday in birthdays:
+            birthday.active = False
 
 
 class Department(models.Model):
@@ -64,7 +91,6 @@ class Department(models.Model):
 
     check_birthdays = fields.Boolean(default=True)
     birthday_remind_days = fields.Integer(default=7)
-
 
     def _cron_check_birthdays(self):
         departments = self.search([('check_birthdays', '=', True)])
@@ -83,17 +109,18 @@ class Department(models.Model):
                     if events:
                         continue
                     event_vals = {
-                        'birthday_employee' : member.id,
-                        'birthday_date' : member_birthday,
-                        'department_id' : department.id,
-                        'active' : True,
+                        'birthday_employee': member.id,
+                        'birthday_date': member_birthday,
+                        'department_id': department.id,
+                        'active': True,
                         }
                     event = birthday_obj.create(event_vals)
                     followers = department.member_ids - member
                     followers = followers.filtered('user_id')
                     f = []
                     for follower in followers:
-                        f.append(follower.user_id.partner_id.id) # prideda followerius
+                        f.append(follower.user_id.partner_id.id)
                     event.message_subscribe(partner_ids=f)
-                    template = self.env.ref("hr_birthday.email_template_birthday")
+                    template = self.env.ref(
+                        "hr_birthday.email_template_birthday")
                     event.message_post_with_template(template.id)

@@ -12,13 +12,16 @@
       <t t-call="report.html_container">
         <t t-foreach="docs" t-as="doc">
           <div class="page">
-            <img class="center-block" t-att-src="'/hr_birthday/static/src/img/versada.jpg'" style="max-height: 70px;"/>
-            <h3> <span t-field="doc.name"/> Department Birthdays</h3>
+            <img class="center-block" t-att-src="'/web/binary/company_logo'" style="max-height: 70px;"/>
+            <h3><span t-field="doc.name"/> Department Birthdays</h3>
             <newline />
             <table class="table table-striped">
+                <thead>
               <tr>
                 <th>#</th><th>Name</th><th>Birthday</th>
               </tr>
+          </thead>
+          <tbody>
               <t t-foreach="doc.member_ids.filtered('birthday').sort_by_birthday()" t-as="member">
                   <tr>
                     <td><span t-esc="member_index + 1"/></td>
@@ -26,6 +29,7 @@
                     <td><span t-field="member.birthday"/></td>
                   </tr>
               </t>
+          </tbody>
             </table>
           </div>
         </t>

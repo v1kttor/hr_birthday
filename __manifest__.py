@@ -1,18 +1,17 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "Birthdays module",
+    'name': "Birthdays",
 
-    'summary': """Birthdays reminder""",
+    'summary': """Upcoming birthdays""",
 
     'description': """
-        Very very very long description of module's purpose
+
     """,
 
-    'author': "hbee",
-    'website': "http://www.hbee.com",
+    'author': "unknown",
+    'website': "http://www.odoo.com",
 
     # Categories can be used to filter modules in modules listing
-    # Check https://github.com/odoo/odoo/blob/master/odoo/addons/base/module/module_data.xml
     # for the full list
     'category': 'Uncategorized',
     'version': '0.1',
@@ -23,12 +22,10 @@
     # always loaded
     'data': [
         'security/ir.model.access.csv',
-        #'views/views.xml',
-        #'views/templates.xml',
-        'security/security.xml',
         'security/hr_birthday.xml',
         'views/reports.xml',
         'data/ir.xml',
+        'data/optional.xml',
         'views/hr.xml',
         'views/mail.xml',
     ],

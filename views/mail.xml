@@ -11,8 +11,7 @@
       <field name="body_html">
         <![CDATA[
 	      <p>Dear followers,<br/><br/>
-	      We would like to inform you about an upcoming birthday!
-      ]|
+	      We would like to inform you about ${(object.birthday_employee.name)} birthday which is on ${(object.birthday_date)}
      <br/></p>
               Regards,<br/>
               ${(object.department_id.company_id.name)}
