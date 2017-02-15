@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
-from odoo import models, fields, api
 from datetime import date, datetime, timedelta
+from odoo import models, fields, api
 
 
 def employee_birthdate(employee):
@@ -15,14 +15,14 @@ class HrEmployee(models.Model):
     @api.multi
     def get_upcoming_birthday_date(self, delta_days, today_date=None):
         self.ensure_one()
+        zero = timedelta()
+        delta = timedelta(days=delta_days)
         if today_date is None:
             today_date = date.today()
         if not self.birthday:
             return
         birthday = datetime.strptime(self.birthday, '%Y-%m-%d').date()
         birthday = birthday.replace(year=today_date.year)
-        delta = timedelta(days=delta_days)
-        zero = timedelta()
         diff = birthday - today_date
         if diff > zero and diff <= delta:
             return birthday
