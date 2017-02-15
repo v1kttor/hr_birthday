@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-  <data>
     <record id="birthday_boy_girl_employee" model="ir.rule">
-        <field name="name">Birthday Boy/Girl</field>
+        <field name="name">Birthday Event: HR Employee</field>
         <field name="model_id" ref="model_hr_birthday"/>
         <field name="domain_force">['|',
             ('birthday_employee.user_id', '=', False),
@@ -12,7 +11,7 @@
         <field name="groups" eval="[(4,ref('base.group_user'))]"/>
     </record>
       <record id="birthday_officer" model="ir.rule">
-          <field name="name">Birthday Officer</field>
+          <field name="name">Birthday Event: HR Officer</field>
           <field name="model_id" ref="model_hr_birthday"/>
           <field name="domain_force">['|',
               ('birthday_employee.user_id', '=', False),
@@ -23,7 +22,7 @@
           <field name="groups" eval="[(4,ref('hr.group_hr_user'))]"/>
       </record>
       <record id="birthday_manager" model="ir.rule">
-          <field name="name">Birthday Manager</field>
+          <field name="name">Birthday Event: HR Manager</field>
           <field name="model_id" ref="model_hr_birthday"/>
           <field name="domain_force">['|',
               ('birthday_employee.user_id', '=', False),
@@ -34,6 +33,4 @@
           <field name="perm_unlink" eval="True"/>
           <field name="groups" eval="[(4,ref('hr.group_hr_manager'))]"/>
       </record>
-
-  </data>
 </odoo>
