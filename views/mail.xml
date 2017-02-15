@@ -1,13 +1,9 @@
 <odoo>
-  <data>
     <record id="email_template_birthday" model="mail.template">
       <field name="name">Upcoming birthday</field>
-      <!--<field name="email_from">${object.company_id and object.company_id.email or ''}</field> -->
       <field name="subject">Upcoming birthday</field>
-      <!--<field name="email_to">${object.email|safe}</field> -->
       <field name="auto_delete" eval="True"/>
       <field name="model_id" ref="hr_birthday.model_hr_birthday"/>
-      <!--<field name="lang">${object.partner_id.lang}</field> -->
       <field name="body_html">
         <![CDATA[
 	      <p>Dear followers,<br/><br/>
@@ -18,5 +14,4 @@
 	    ]]>
       </field>
     </record>
-  </data>
 </odoo>
