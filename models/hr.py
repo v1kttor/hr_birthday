@@ -39,9 +39,9 @@ class HrBirthday(models.Model):
     _order = 'birthday_date'
 
     birthday_employee = fields.Many2one(
-        'hr.employee', string="Birthday Employee", required=True)
+        'hr.employee', string='Birthday Employee', required=True)
     birthday_date = fields.Date(required=True)
-    department_id = fields.Many2one('hr.department', string="Department")
+    department_id = fields.Many2one('hr.department', string='Department')
     celebration_date = fields.Datetime(track_visibility=True)
     active = fields.Boolean(default=True)
 
