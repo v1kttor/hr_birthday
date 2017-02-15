@@ -63,7 +63,7 @@ class HrBirthday(models.Model):
     def name_get(self):
         result = []
         for birthday in self:
-            if (not birthday.birthday_date):
+            if not birthday.birthday_date:
                 name = birthday.birthday_employee.name
                 result.append((birthday.id, name))
             else:
