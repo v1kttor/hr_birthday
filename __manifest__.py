@@ -2,18 +2,19 @@
 {
     'name': "Birthdays",
 
-    'summary': """Upcoming birthdays""",
+    'summary': """Birthdays module which remind
+     us about our colleagues upcoming birthday""",
 
     'description': """
 
     """,
 
-    'author': "unknown",
-    'website': "http://www.odoo.com",
+    'author': "Viktoras",
+    'website': "",
 
     # Categories can be used to filter modules in modules listing
     # for the full list
-    'category': 'Uncategorized',
+    'category': 'HR',
     'version': '0.1',
 
     # any module necessary for this one to work correctly
