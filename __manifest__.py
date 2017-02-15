@@ -8,7 +8,7 @@
     upcoming birthday.
     birthdays. Also, there is a feature which marks birthday events
     t false if they are older than two weeks.""",
-    'description': "",
+    'description': "Birthday reminder",
     'author': "Viktoras",
     'website': "",
 
@@ -28,7 +28,6 @@
         'security/hr_birthday.xml',
         'views/reports.xml',
         'data/ir.xml',
-        'data/optional.xml',
         'views/hr.xml',
         'views/mail.xml',
     ],
