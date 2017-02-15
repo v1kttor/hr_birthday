@@ -89,7 +89,9 @@ class HrDepartment(models.Model):
     _inherit = 'hr.department'
 
     check_birthdays = fields.Boolean(default=True)
-    birthday_remind_days = fields.Integer(default=7)
+    birthday_remind_days = fields.Integer(
+        default=7,
+        help="How many days before the birthday should everybody be reminded")
 
     def _cron_check_birthdays(self):
         departments = self.search([('check_birthdays', '=', True)])
