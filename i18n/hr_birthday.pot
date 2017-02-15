@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-02-07 09:53+0000\n"
-"PO-Revision-Date: 2017-02-07 09:53+0000\n"
+"POT-Creation-Date: 2017-02-15 08:24+0000\n"
+"PO-Revision-Date: 2017-02-15 08:24+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -20,8 +20,7 @@ msgstr ""
 msgid "\n"
 "        \n"
 "	      <p>Dear followers,<br/><br/>\n"
-"	      We would like to inform you about an upcoming birthday!\n"
-"      ]|\n"
+"	      We would like to inform you about ${(object.birthday_employee.name)} birthday which is on ${(object.birthday_date)}\n"
 "     <br/></p>\n"
 "              Regards,<br/>\n"
 "              ${(object.department_id.company_id.name)}\n"
@@ -45,8 +44,8 @@ msgid "Birth Form"
 msgstr ""
 
 #. module: hr_birthday
-#: model:res.groups,name:hr_birthday.group_manager
-msgid "Birthday / Manager"
+#: model:ir.ui.view,arch_db:hr_birthday.birthday_calendar_view
+msgid "Birthday Calendar"
 msgstr ""
 
 #. module: hr_birthday
@@ -56,7 +55,7 @@ msgstr ""
 
 #. module: hr_birthday
 #: model:ir.model,name:hr_birthday.model_hr_birthday
-msgid "Birthday Module"
+msgid "Birthday Event"
 msgstr ""
 
 #. module: hr_birthday
@@ -88,6 +87,11 @@ msgstr ""
 #. module: hr_birthday
 #: model:ir.model.fields,field_description:hr_birthday.field_hr_department_check_birthdays
 msgid "Check birthdays"
+msgstr ""
+
+#. module: hr_birthday
+#: model:ir.model.fields,field_description:hr_birthday.field_hr_birthday_color
+msgid "Color"
 msgstr ""
 
 #. module: hr_birthday
@@ -153,25 +157,5 @@ msgstr ""
 #. module: hr_birthday
 #: model:ir.ui.menu,name:hr_birthday.menu_birthday_child
 msgid "Upcoming birthdays"
-msgstr ""
-
-#. module: hr_birthday
-#: model:ir.model,name:hr_birthday.model_hr_birthday_hrbirthday
-msgid "hr_birthday.hrbirthday"
-msgstr ""
-
-#. module: hr_birthday
-#: model:ir.model,name:hr_birthday.model_hrbirhtday_hrbirthday
-msgid "hrbirhtday.hrbirthday"
-msgstr ""
-
-#. module: hr_birthday
-#: model:ir.model,name:hr_birthday.model_hrbirthday_birthday
-msgid "hrbirthday.birthday"
-msgstr ""
-
-#. module: hr_birthday
-#: model:ir.model,name:hr_birthday.model_hrbirthday_department
-msgid "hrbirthday.department"
 msgstr ""
 
