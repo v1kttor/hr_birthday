@@ -100,25 +100,26 @@ class HrDepartment(models.Model):
                 member_birthday = member.get_upcoming_birthday_date(
                     department.birthday_remind_days)
 
-                if member_birthday:
-                    events = birthday_obj.search([
-                        ('birthday_employee', '=', member.id),
-                        ('birthday_date', '=', member_birthday),
-                    ])
-                    if events:
-                        continue
-                    event_vals = {
+                if not member_birthday:
+                    continue
+                events = birthday_obj.search([
+                    ('birthday_employee', '=', member.id),
+                    ('birthday_date', '=', member_birthday),
+                ])
+                if events:
+                    continue
+                event_vals = {
                         'birthday_employee': member.id,
                         'birthday_date': member_birthday,
                         'department_id': department.id,
-                        }
-                    event = birthday_obj.create(event_vals)
-                    followers = department.member_ids - member
-                    followers = followers.filtered('user_id')
-                    f = []
-                    for follower in followers:
-                        f.append(follower.user_id.partner_id.id)
-                    event.message_subscribe(partner_ids=f)
-                    template = self.env.ref(
-                        "hr_birthday.email_template_birthday")
-                    event.message_post_with_template(template.id)
+                }
+                event = birthday_obj.create(event_vals)
+                followers = department.member_ids - member
+                followers = followers.filtered('user_id', 'manager_id')
+                f = []
+                for follower in followers:
+                    f.append(follower.user_id.partner_id.id)
+                event.message_subscribe(partner_ids=f)
+                template = self.env.ref(
+                    "hr_birthday.email_template_birthday")
+                event.message_post_with_template(template.id)
