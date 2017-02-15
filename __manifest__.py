@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     'name': "HR Birthday Reminder",
-    'summary': """Birthdays module which reminds us about our colleagues
+    'summary':  """Birthdays module which reminds us about our colleagues
     upcoming birthday.""",
     'description': "Birthday reminder",
     'author': "Viktoras",
