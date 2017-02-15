@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
-from odoo.tests import common
 from datetime import date
+from odoo.tests import common
 
 
 class TestHrEmployee(common.TransactionCase):
