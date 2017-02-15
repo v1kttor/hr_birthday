@@ -4,14 +4,19 @@
     <record id="birthday_boy_girl_employee" model="ir.rule">
         <field name="name">Birthday Boy/Girl</field>
         <field name="model_id" ref="model_hr_birthday"/>
-        <field name="domain_force">['|', ('birthday_employee.user_id', '=', False), ('birthday_employee.user_id','!=',user.id), ('department_id', 'in', user.employee_ids.mapped('department_id').ids)]</field>
+        <field name="domain_force">['|',
+            ('birthday_employee.user_id', '=', False),
+            ('birthday_employee.user_id','!=',user.id),
+            ('department_id', 'in', user.employee_ids.mapped('department_id').ids)]</field>
         <field name="perm_read" eval="True"/>
         <field name="groups" eval="[(4,ref('base.group_user'))]"/>
     </record>
       <record id="birthday_officer" model="ir.rule">
           <field name="name">Birthday Officer</field>
           <field name="model_id" ref="model_hr_birthday"/>
-          <field name="domain_force">['|', ('birthday_employee.user_id', '=', False), ('birthday_employee.user_id','!=',user.id)]</field>
+          <field name="domain_force">['|',
+              ('birthday_employee.user_id', '=', False),
+              ('birthday_employee.user_id','!=',user.id)]</field>
           <field name="perm_read" eval="True"/>
           <field name="perm_create" eval="True"/>
           <field name="perm_write" eval="True"/>
@@ -20,7 +25,9 @@
       <record id="birthday_manager" model="ir.rule">
           <field name="name">Birthday Manager</field>
           <field name="model_id" ref="model_hr_birthday"/>
-          <field name="domain_force">['|', ('birthday_employee.user_id', '=', False), ('birthday_employee.user_id','!=',user.id)]</field>
+          <field name="domain_force">['|',
+              ('birthday_employee.user_id', '=', False),
+              ('birthday_employee.user_id','!=',user.id)]</field>
           <field name="perm_read" eval="True"/>
           <field name="perm_create" eval="True"/>
           <field name="perm_write" eval="True"/>

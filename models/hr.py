@@ -85,7 +85,7 @@ class HrBirthday(models.Model):
             birthday.active = False
 
 
-class Department(models.Model):
+class HrDepartment(models.Model):
     _inherit = 'hr.department'
 
     check_birthdays = fields.Boolean(default=True)
@@ -111,7 +111,6 @@ class Department(models.Model):
                         'birthday_employee': member.id,
                         'birthday_date': member_birthday,
                         'department_id': department.id,
-                        'active': True,
                         }
                     event = birthday_obj.create(event_vals)
                     followers = department.member_ids - member
