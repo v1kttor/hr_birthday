@@ -44,7 +44,6 @@ class HrBirthday(models.Model):
     department_id = fields.Many2one('hr.department', string="Department")
     celebration_date = fields.Datetime(track_visibility=True)
     active = fields.Boolean(default=True)
-    color = fields.Integer()
 
     @api.multi
     def get_old_birthdays(self, active_days, today_date=None):
