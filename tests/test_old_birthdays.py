@@ -14,7 +14,7 @@ class TestOldBirthdays(common.TransactionCase):
         ]
 
         employee = self.env['hr.employee'].create({
-            'birthday': '2017-02-16',
+            'birthday': '2017-02-17',
             'name': 'Jonas Sladkevičius'})
 
         for i in test_casess:
