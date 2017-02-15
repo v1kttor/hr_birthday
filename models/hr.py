@@ -62,15 +62,15 @@ class HrBirthday(models.Model):
 
     def name_get(self):
         result = []
-        for hrbirthday in self:
-            if (not hrbirthday.birthday_employee.birthday and
-                    not hrbirthday.birthday_date):
-                name = hrbirthday.birthday_employee.name
-                result.append((hrbirthday.id, name))
+        for birthday in self:
+            if (not birthday.birthday_date):
+                name = birthday.birthday_employee.name
+                result.append((birthday.id, name))
             else:
-                name = (hrbirthday.birthday_employee.name +
-                        ' ' + hrbirthday.birthday_date)
-                result.append((hrbirthday.id, name))
+                name = ('%s %s') % (
+                    birthday.birthday_employee.name,
+                    birthday.birthday_date)
+                result.append((birthday.id, name))
         return result
 
     def _cron_check_old_birthdays_events(self):
