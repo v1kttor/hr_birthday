@@ -8,7 +8,7 @@
             <field name="check_birthdays"/></field>
             <field name="birthday_remind_days"/></field>
     </record>
-<!-- form view -->
+    <!-- form view -->
     <record model="ir.ui.view" id="birth_form_view">
       <field name="name">birthday.form</field>
       <field name="model">hr.birthday</field>
@@ -31,7 +31,7 @@
         </form>
       </field>
     </record>
-<!-- tree view -->
+    <!-- tree view -->
     <record model="ir.ui.view" id="birth_tree_view">
       <field name="name">birthday.tree</field>
       <field name="model">hr.birthday</field>
@@ -64,7 +64,7 @@
         </p>
       </field>
     </record>
-<!-- menuitem -->
+    <!-- menuitem -->
     <menuitem id="menu_birthday" parent="hr.menu_hr_root" name="Birthdays" sequence="1"/>
     <menuitem id="menu_birthday_child" parent="menu_birthday" name="Upcoming birthdays" action="birthday_list_action"/>
  </odoo>
