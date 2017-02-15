@@ -21,8 +21,8 @@ class HrEmployee(models.Model):
             today_date = date.today()
         if not self.birthday:
             return
-        birthday = datetime.strptime(self.birthday, '%Y-%m-%d').date()
-        birthday = birthday.replace(year=today_date.year)
+        birthday = datetime.strptime(
+            self.birthday, '%Y-%m-%d').replace(year=today_date.year).date()
         diff = birthday - today_date
         if diff > zero and diff <= delta:
             return birthday
