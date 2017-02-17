@@ -1,11 +1,14 @@
 # -*- coding: utf-8 -*-
 
 from datetime import date, datetime, timedelta
+
 from odoo import models, fields, api
+from odoo.tools import DEFAULT_SERVER_DATE_FORMAT
 
 
 def employee_birthdate(employee):
-    r = datetime.strptime(employee.birthday, '%Y-%m-%d')
+    r = datetime.strptime(
+        employee.birthday, '%Y-%m-%d').strftime(DEFAULT_SERVER_DATE_FORMAT)
     return (r.month, r.day)
 
 
@@ -22,7 +25,9 @@ class HrEmployee(models.Model):
         if not self.birthday:
             return
         birthday = datetime.strptime(
-            self.birthday, '%Y-%m-%d').replace(year=today_date.year).date()
+            self.birthday, '%Y-%m-%d').replace(
+            year=today_date.year).strftime(
+            DEFAULT_SERVER_DATE_FORMAT).date()
         diff = birthday - today_date
         if diff > zero and diff <= delta:
             return birthday
@@ -73,6 +78,7 @@ class HrBirthday(models.Model):
                 result.append((birthday.id, name))
         return result
 
+    @api.multi
     def _cron_check_old_birthdays_events(self):
         days_to_false = timedelta(days=14)
         today = date.today()

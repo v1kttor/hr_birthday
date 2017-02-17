@@ -5,8 +5,10 @@
       <field name="inherit_id" ref="hr.view_department_form"/>
         <field name="arch" type="xml">
             <field name="company_id" position="after">
-            <field name="check_birthdays"/></field>
-            <field name="birthday_remind_days"/></field>
+            <field name="check_birthdays"/>
+            <field name="birthday_remind_days"/>
+        </field>
+    </field>
     </record>
     <!-- form view -->
     <record model="ir.ui.view" id="birth_form_view">
