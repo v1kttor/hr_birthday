@@ -8,7 +8,7 @@ from odoo.tools import DEFAULT_SERVER_DATE_FORMAT
 
 def employee_birthdate(employee):
     r = datetime.strptime(
-        employee.birthday, '%Y-%m-%d').strftime(DEFAULT_SERVER_DATE_FORMAT)
+        employee.birthday, DEFAULT_SERVER_DATE_FORMAT)
     return (r.month, r.day)
 
 
@@ -25,9 +25,8 @@ class HrEmployee(models.Model):
         if not self.birthday:
             return
         birthday = datetime.strptime(
-            self.birthday, '%Y-%m-%d').replace(
-            year=today_date.year).strftime(
-            DEFAULT_SERVER_DATE_FORMAT).date()
+            self.birthday, DEFAULT_SERVER_DATE_FORMAT).replace(
+            year=today_date.year).date()
         diff = birthday - today_date
         if diff > zero and diff <= delta:
             return birthday
@@ -60,7 +59,7 @@ class HrBirthday(models.Model):
         false_days = timedelta(days=active_days)
         false_date = today_date - false_days
         birthday_date = datetime.strptime(
-            self.birthday_date, '%Y-%m-%d').date()
+            self.birthday_date, DEFAULT_SERVER_DATE_FORMAT).date()
         birthday_date = birthday_date.replace(year=today_date.year)
         if birthday_date <= false_date:
             return birthday_date
