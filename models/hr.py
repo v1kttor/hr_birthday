@@ -77,16 +77,20 @@ class HrBirthday(models.Model):
                 result.append((birthday.id, name))
         return result
 
-    @api.multi
-    def _cron_check_old_birthdays_events(self):
-        days_to_false = timedelta(days=14)
-        today = date.today()
-        birthdays = self.search([
+    @api.model
+    def find_old_birthdays(self, today_date=None, days_to_false=14):
+        if today_date is None:
+            today_date = date.today()
+        days_to_false = timedelta(days=days_to_false)
+        return self.search([
             ('active', '=', True),
             ('birthday_date', '!=', False),
-            ('birthday_date', '<', today - days_to_false)
+            ('birthday_date', '<', today_date - days_to_false)
         ])
-        for birthday in birthdays:
+
+    @api.model
+    def _cron_check_old_birthdays_events(self, days_to_false=14):
+        for birthday in self.find_old_birthdays(days_to_false=days_to_false):
             birthday.active = False
 
 
@@ -116,17 +120,18 @@ class HrDepartment(models.Model):
                 if events:
                     continue
                 event_vals = {
-                        'birthday_employee': member.id,
-                        'birthday_date': member_birthday,
-                        'department_id': department.id,
+                    'birthday_employee': member.id,
+                    'birthday_date': member_birthday,
+                    'department_id': department.id,
                 }
                 event = birthday_obj.create(event_vals)
                 followers = department.member_ids - member
                 followers = followers.filtered('user_id', 'manager_id')
                 f = []
                 for follower in followers:
-                    f.append(follower.user_id.partner_id.id)
-                event.message_subscribe(partner_ids=f)
+                    f.append(
+                        follower.user_id.partner_id.id).mapped(
+                        event.message_subscribe(partner_ids=f))
                 template = self.env.ref(
-                    "hr_birthday.email_template_birthday")
+                    'hr_birthday.email_template_birthday')
                 event.message_post_with_template(template.id)
