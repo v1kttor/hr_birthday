@@ -49,21 +49,6 @@ class HrBirthday(models.Model):
     celebration_date = fields.Datetime(track_visibility=True)
     active = fields.Boolean(default=True)
 
-    @api.multi
-    def get_old_birthdays(self, active_days, today_date=None):
-        self.ensure_one()
-        if today_date is None:
-            today_date = date.today()
-        if not self.birthday_date:
-            return
-        false_days = timedelta(days=active_days)
-        false_date = today_date - false_days
-        birthday_date = datetime.strptime(
-            self.birthday_date, DEFAULT_SERVER_DATE_FORMAT).date()
-        birthday_date = birthday_date.replace(year=today_date.year)
-        if birthday_date <= false_date:
-            return birthday_date
-
     def name_get(self):
         result = []
         for birthday in self:
