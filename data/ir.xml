@@ -1,5 +1,4 @@
 <odoo>
-
 <record id="ir_cron_check_birthdays" model="ir.cron">
     <field name="name">Check for upcoming birthdays</field>
     <field eval="True" name="active" />
@@ -24,6 +23,4 @@
     <field eval="'_cron_check_old_birthdays_events'" name="function" />
     <field eval="'()'" name="args" />
 </record>
-
-
 </odoo>

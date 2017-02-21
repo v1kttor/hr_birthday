@@ -13,7 +13,6 @@
           <div class="page">
             <img class="center-block" t-att-src="'/web/binary/company_logo'" style="max-height: 70px;"/>
             <h3><span t-field="doc.name"/> Department Birthdays</h3>
-            <newline />
             <table class="table table-striped">
                 <thead>
               <tr>

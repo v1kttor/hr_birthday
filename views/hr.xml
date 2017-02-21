@@ -10,7 +10,6 @@
         </field>
     </field>
     </record>
-    <!-- form view -->
     <record model="ir.ui.view" id="birth_form_view">
       <field name="name">birthday.form</field>
       <field name="model">hr.birthday</field>
@@ -62,7 +61,8 @@
       <field name="view_type">form</field>
       <field name="view_mode">tree,form,calendar</field>
       <field name="help" type="html">
-        <p class="oe_view_nocontent_create">Hello, tell us about an upcoming birthday! :)
+        <p class="oe_view_nocontent_create">
+            Hello, tell us about an upcoming birthday!
         </p>
       </field>
     </record>

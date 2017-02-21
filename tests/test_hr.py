@@ -13,13 +13,11 @@ class TestHrEmployee(common.TransactionCase):
             (date(1990, 2, 18), '1987-04-18', 10, None),
             (date(2017, 2, 15), None, 5, None),
             (date(2018, 3, 20), '1980-05-22', 3, None),
-
         ]
-        for i in test_cases:
-            today = i[0]
+        for today, birthday, remind_days, expectation in test_cases:
             employee = self.env['hr.employee'].create({
-                'birthday': i[1],
-                'name': 'Jonas Sladkevičius'})
+                'birthday': birthday,
+                'name': 'Jonas Jonaitis'})
             employee_birthday = employee.get_upcoming_birthday_date(
-                i[2], today)
-            self.assertEqual(employee_birthday, i[3])
+                remind_days, today)
+            self.assertEqual(employee_birthday, expectation)
