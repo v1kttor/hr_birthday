@@ -78,6 +78,12 @@ class HrBirthday(models.Model):
         for birthday in self.find_old_birthdays(days_to_false=days_to_false):
             birthday.active = False
 
+    def _get_followers(self, bday_employee):
+        department = bday_employee.department_id
+        followers = (
+            department.member_ids + department.manager_id) - bday_employee
+        return followers
+
 
 class HrDepartment(models.Model):
     _inherit = 'hr.department'
@@ -110,13 +116,9 @@ class HrDepartment(models.Model):
                     'department_id': department.id,
                 }
                 event = birthday_obj.create(event_vals)
-                followers = department.member_ids - member
-                followers = followers.filtered('user_id', 'manager_id')
-                f = []
-                for follower in followers:
-                    f.append(
-                        follower.user_id.partner_id.id).mapped(
-                        event.message_subscribe(partner_ids=f))
+                f = event._get_followers(member).filtered('user_id')
+                event.message_subscribe(
+                    partner_ids=f.mapped('user_id.partner_id.id'))
                 template = self.env.ref(
                     'hr_birthday.email_template_birthday')
                 event.message_post_with_template(template.id)
