@@ -78,10 +78,9 @@ class HrBirthday(models.Model):
         for birthday in self.find_old_birthdays(days_to_false=days_to_false):
             birthday.active = False
 
-    def _get_followers(self, bday_employee):
-        department = bday_employee.department_id
+    def _get_followers(self, department, bday_employee):
         followers = (
-            department.member_ids + department.manager_id) - bday_employee
+                department.member_ids + department.manager_id) - bday_employee
         return followers
 
 
@@ -98,7 +97,12 @@ class HrDepartment(models.Model):
         birthday_obj = self.env['hr.birthday']
 
         for department in departments:
-            for member in department.member_ids.filtered('birthday'):
+            members = department.member_ids.filtered('birthday')
+            department_manager = department.manager_id
+            members += department_manager.filtered('birthday')
+            # I members prideti department manager'i jei jis nera employee ir
+            # irgi turi birthday uzsettinta
+            for member in members:
                 member_birthday = member.get_upcoming_birthday_date(
                     department.birthday_remind_days)
 
@@ -116,7 +120,8 @@ class HrDepartment(models.Model):
                     'department_id': department.id,
                 }
                 event = birthday_obj.create(event_vals)
-                f = event._get_followers(member).filtered('user_id')
+                f = event._get_followers(
+                    department, member).filtered('user_id')
                 event.message_subscribe(
                     partner_ids=f.mapped('user_id.partner_id.id'))
                 template = self.env.ref(
