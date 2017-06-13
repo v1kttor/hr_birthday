@@ -1,72 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
 <odoo>
+
     <record id="birthday_department_view" model="ir.ui.view">
-      <field name="name">hr.department.form</field>
-      <field name="model">hr.department</field>
-      <field name="inherit_id" ref="hr.view_department_form"/>
+        <field name="name">hr.department.form</field>
+        <field name="model">hr.department</field>
+        <field name="inherit_id" ref="hr.view_department_form"/>
         <field name="arch" type="xml">
             <field name="company_id" position="after">
-            <field name="check_birthdays"/>
-            <field name="birthday_remind_days"/>
+                <field name="check_birthdays"/>
+                <field name="birthday_remind_days"/>
+            </field>
         </field>
-    </field>
     </record>
+
     <record model="ir.ui.view" id="birth_form_view">
-      <field name="name">birthday.form</field>
-      <field name="model">hr.birthday</field>
-      <field name="arch" type="xml">
-        <form string="Birth Form">
-          <sheet>
-            <group>
-              <field name="birthday_employee"/>
-              <field name="active"/>
-              <field name="birthday_date"/>
-              <field name="department_id"/>
-              <field name="celebration_date"/>
-            </group>
-          </sheet>
-          <!-- mail thread -->
-        <div class="oe_chatter">
-          <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
-          <field name="message_ids" widget="mail_thread"/>
-        </div>
-        </form>
-      </field>
+        <field name="name">birthday.form</field>
+        <field name="model">hr.birthday</field>
+        <field name="arch" type="xml">
+            <form string="Birth Form">
+                <sheet>
+                    <group>
+                        <field name="birthday_employee"/>
+                        <field name="active"/>
+                        <field name="birthday_date"/>
+                        <field name="department_id"/>
+                        <field name="celebration_date"/>
+                    </group>
+                </sheet>
+
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
     </record>
-    <!-- tree view -->
+
     <record model="ir.ui.view" id="birth_tree_view">
-      <field name="name">birthday.tree</field>
-      <field name="model">hr.birthday</field>
-      <field name="arch" type="xml">
-        <tree string="Birht tree">
-          <field name="birthday_employee"/>
-          <field name="birthday_date"/>
-          <field name="department_id"/>
-        </tree>
-      </field>
+        <field name="name">birthday.tree</field>
+        <field name="model">hr.birthday</field>
+        <field name="arch" type="xml">
+            <tree string="Birht tree">
+                <field name="birthday_employee"/>
+                <field name="birthday_date"/>
+                <field name="department_id"/>
+            </tree>
+        </field>
     </record>
-    <!-- calendar view -->
+
     <record model="ir.ui.view" id="birthday_calendar_view">
-      <field name="name">birthday.calendar</field>
-      <field name="model">hr.birthday</field>
-      <field name="arch" type="xml">
-          <calendar string="Birthday Calendar" date_start="birthday_date" date_stop="birthday_date" color="birthday_employee" mode="month">
-              <field name="birthday_employee"/>
-          </calendar>
-      </field>
+        <field name="name">birthday.calendar</field>
+        <field name="model">hr.birthday</field>
+        <field name="arch" type="xml">
+            <calendar string="Birthday Calendar" date_start="birthday_date" date_stop="birthday_date" color="birthday_employee" mode="month">
+                <field name="birthday_employee"/>
+            </calendar>
+        </field>
     </record>
-   <!-- birth actionas act_window -->
+
     <record model="ir.actions.act_window" id="birthday_list_action">
-      <field name="name">Birthdays</field>
-      <field name="res_model">hr.birthday</field>
-      <field name="view_type">form</field>
-      <field name="view_mode">tree,form,calendar</field>
-      <field name="help" type="html">
-        <p class="oe_view_nocontent_create">
-            Hello, tell us about an upcoming birthday!
-        </p>
-      </field>
+        <field name="name">Birthdays</field>
+        <field name="res_model">hr.birthday</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form,calendar</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Hello, tell us about an upcoming birthday!
+            </p>
+        </field>
     </record>
-    <!-- menuitem -->
+
     <menuitem id="menu_birthday" parent="hr.menu_hr_root" name="Birthdays" sequence="1"/>
     <menuitem id="menu_birthday_child" parent="menu_birthday" name="Upcoming birthdays" action="birthday_list_action"/>
- </odoo>
+
+</odoo>
